@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Import the React and ReactDOM libraries
+import React, { Component } from "react";
 
-function App() {
+import NavBar from "./components/nav/NavBar";
+import Home from "./components/home/Home";
+import ContactMe from "./components/about/ContactMe";
+
+import { BrowserRouter, Route } from "react-router-dom";
+import { Button, Divider, Image, Transition } from "semantic-ui-react";
+
+import { default as SarcasmApp } from "./sarcasm/App";
+import "./index.css";
+
+// Technically this will be the main app sooon...
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="ui vertical masthead center aligned segment">
+      <BrowserRouter>
+        <div>
+          <NavBar />
+          <Route path="/" exact component={Home} />
+          <Route path="/Sarcasm" exact component={SarcasmApp} />
+        </div>
+      </BrowserRouter>
+      <div className="ui footer segment">
+        <div className="footer">
+          <ContactMe />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
